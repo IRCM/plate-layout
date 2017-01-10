@@ -27,7 +27,6 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import ca.qc.ircm.platelayout.client.PlateLayoutServerRpc;
-import ca.qc.ircm.platelayout.client.PlateLayoutState;
 import ca.qc.ircm.platelayout.client.PlateLayoutState.WellData;
 import ca.qc.ircm.platelayout.test.config.TestAnnotations;
 import com.vaadin.server.ServerRpcMethodInvocation;
@@ -86,7 +85,6 @@ public class PlateLayoutTest {
     WellData wellData = plateLayout.getState().wellData.get(label);
     assertEquals(1, wellData.column);
     assertEquals(2, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
   }
 
@@ -151,21 +149,18 @@ public class PlateLayoutTest {
     WellData wellData = plateLayout.getState().wellData.get(label1);
     assertEquals(0, wellData.column);
     assertEquals(0, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
     assertTrue(plateLayout.getState().wellData.containsKey(label2));
     assertNotNull(plateLayout.getState().wellData.get(label2));
     wellData = plateLayout.getState().wellData.get(label2);
     assertEquals(1, wellData.column);
     assertEquals(0, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
     assertTrue(plateLayout.getState().wellData.containsKey(label3));
     assertNotNull(plateLayout.getState().wellData.get(label3));
     wellData = plateLayout.getState().wellData.get(label3);
     assertEquals(0, wellData.column);
     assertEquals(1, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
   }
 
@@ -207,14 +202,12 @@ public class PlateLayoutTest {
     WellData wellData = plateLayout.getState().wellData.get(label1);
     assertEquals(2, wellData.column);
     assertEquals(1, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
     assertTrue(plateLayout.getState().wellData.containsKey(label2));
     assertNotNull(plateLayout.getState().wellData.get(label2));
     wellData = plateLayout.getState().wellData.get(label2);
     assertEquals(1, wellData.column);
     assertEquals(2, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
   }
 
@@ -231,7 +224,6 @@ public class PlateLayoutTest {
     WellData wellData = plateLayout.getState().wellData.get(label2);
     assertEquals(0, wellData.column);
     assertEquals(0, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
   }
 
@@ -249,7 +241,6 @@ public class PlateLayoutTest {
     WellData wellData = plateLayout.getState().wellData.get(label2);
     assertEquals(1, wellData.column);
     assertEquals(2, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
   }
 
@@ -264,7 +255,6 @@ public class PlateLayoutTest {
     WellData wellData = plateLayout.getState().wellData.get(label2);
     assertEquals(0, wellData.column);
     assertEquals(0, wellData.row);
-    assertEquals(PlateLayoutState.ALIGNMENT_DEFAULT.getBitMask(), wellData.alignment);
     assertTrue(wellData.styles == null || wellData.styles.isEmpty());
   }
 

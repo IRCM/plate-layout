@@ -157,10 +157,6 @@ public class PlateLayout extends com.vaadin.ui.AbstractComponentContainer {
       removeComponent(oldComponent);
       addComponent(newComponent, oldData.column, oldData.row);
     } else {
-      int oldAlignment = oldData.alignment;
-      oldData.alignment = newData.alignment;
-      newData.alignment = oldAlignment;
-
       getState().wellData.put(newComponent, oldData);
       getState().wellData.put(oldComponent, newData);
     }
