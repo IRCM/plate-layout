@@ -25,7 +25,6 @@
     <relativePath>../ircm-parent/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ca.qc.ircm.proteomique</groupId>
   <artifactId>plate-layout</artifactId>
   <name>plate-layout</name>
   <version>0.1-SNAPSHOT</version>
