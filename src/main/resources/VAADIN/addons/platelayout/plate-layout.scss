@@ -1,0 +1,41 @@
+/**
+ * Copyright (c) 2016 Institut de recherches cliniques de Montreal (IRCM)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+@mixin plate-layout {
+  .v-plate-layout-header, .v-plate-layout-well {
+    padding: 3px;
+    border: valo-border($border: $v-panel-border, $color: darkest-color($v-panel-background-color, $v-app-background-color), $strength: 0.7);
+    @if $v-table-border-radius > 0 {
+      border-radius: $v-table-border-radius;
+    }
+  }
+  .v-plate-layout-header {
+    @include valo-gradient($v-background-color);
+    text-align: center;
+    min-width: 30px;
+    font-size: $v-table-header-font-size;
+  }
+  .v-plate-layout-header-column {
+    border-left: none;
+  }
+  .v-plate-layout-header-row {
+    border-top: none;
+  }
+  .v-plate-layout-well {
+    border-left: none;
+    border-top: none;
+  }
+}

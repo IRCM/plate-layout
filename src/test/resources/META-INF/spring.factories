@@ -1,0 +1,5 @@
+# Default TestExecutionListeners for the Spring TestContext Framework
+#
+org.springframework.test.context.TestExecutionListener = \
+	ca.qc.ircm.platelayout.test.config.MockitoTestExecutionListener,\
+  ca.qc.ircm.platelayout.test.config.TestBenchTestExecutionListener
