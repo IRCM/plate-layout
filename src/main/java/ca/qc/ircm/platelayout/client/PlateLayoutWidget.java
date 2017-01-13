@@ -66,7 +66,18 @@ public class PlateLayoutWidget extends Grid {
 
   private void createColumnHeader(int column) {
     applyDefaultCellStyles(0, column);
-    setText(0, column, String.valueOf((char) ('A' + column - 1)));
+    setText(0, column, columnHeaderText(column - 1));
+  }
+
+  private String columnHeaderText(int column) {
+    StringBuilder builder = new StringBuilder();
+    int substract = column >= 26 ? 1 : 0;
+    while (column >= 26) {
+      builder.append((char) ('A' + column % 26));
+      column /= 26;
+    }
+    builder.append((char) ('A' + column - substract));
+    return builder.reverse().toString();
   }
 
   /**
