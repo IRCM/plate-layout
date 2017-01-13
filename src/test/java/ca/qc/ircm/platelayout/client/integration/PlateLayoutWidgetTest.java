@@ -54,13 +54,13 @@ public class PlateLayoutWidgetTest extends PlateLayoutWidgetPageObject {
       AbstractElement cell = plateLayoutCell(column, 0);
       assertTrue(cell.getAttribute("class").contains(HEADER_CLASSNAME));
       assertTrue(cell.getAttribute("class").contains(COLUMN_HEADER_CLASSNAME));
-      assertEquals(String.valueOf((char) ('A' + column - 1)), cell.getText());
+      assertEquals(columnHeader(column - 1), cell.getText());
     }
     for (int row = 1; row < getPlateLayoutRows(); row++) {
       AbstractElement cell = plateLayoutCell(0, row);
       assertTrue(cell.getAttribute("class").contains(HEADER_CLASSNAME));
       assertTrue(cell.getAttribute("class").contains(ROW_HEADER_CLASSNAME));
-      assertEquals(String.valueOf((char) ('1' + row - 1)), cell.getText());
+      assertEquals(rowHeader(row - 1), cell.getText());
     }
     for (int column = 1; column < getPlateLayoutColumns(); column++) {
       for (int row = 1; row < getPlateLayoutRows(); row++) {
@@ -68,6 +68,23 @@ public class PlateLayoutWidgetTest extends PlateLayoutWidgetPageObject {
         assertTrue(cell.getAttribute("class").contains(WELL_CLASSNAME));
       }
     }
+  }
+
+  private String columnHeader(int column) {
+    StringBuilder header = new StringBuilder();
+    int substract = column >= 26 ? 1 : 0;
+    while (column >= 26) {
+      char letter = (char) ('A' + column % 26);
+      header.append(letter);
+      column /= 26;
+    }
+    char letter = (char) ('A' + column - substract);
+    header.append(letter);
+    return header.reverse().toString();
+  }
+
+  private String rowHeader(int column) {
+    return String.valueOf(1 + column);
   }
 
   @Test
@@ -116,6 +133,19 @@ public class PlateLayoutWidgetTest extends PlateLayoutWidgetPageObject {
   }
 
   @Test
+  public void resizeColumns_DoubleLetters() {
+    open();
+    int columns = 55;
+
+    setColumns(columns - 1);
+    clickResize();
+
+    assertEquals(columns, getPlateLayoutColumns());
+    assertEquals(rows, getPlateLayoutRows());
+    validateCellStyles();
+  }
+
+  @Test
   public void resizeRows_Increase() {
     open();
     int rows = this.rows + 2;
@@ -132,6 +162,19 @@ public class PlateLayoutWidgetTest extends PlateLayoutWidgetPageObject {
   public void resizeRows_Decrease() {
     open();
     int rows = this.rows - 1;
+
+    setRows(rows - 1);
+    clickResize();
+
+    assertEquals(columns, getPlateLayoutColumns());
+    assertEquals(rows, getPlateLayoutRows());
+    validateCellStyles();
+  }
+
+  @Test
+  public void resizeRows_DoubleDigits() {
+    open();
+    int rows = 23;
 
     setRows(rows - 1);
     clickResize();
