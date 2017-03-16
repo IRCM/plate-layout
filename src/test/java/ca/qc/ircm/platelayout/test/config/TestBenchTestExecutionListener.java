@@ -47,6 +47,7 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
   private static final String SKIP_TESTS_ERROR_MESSAGE = "TestBench tests are skipped";
   private static final String SKIP_TESTS_SYSTEM_PROPERTY = "testbench.skip";
   private static final String DRIVER_SYSTEM_PROPERTY = "testbench.driver";
+  private static final String RETRIES_SYSTEM_PROPERTY = "testbench.retries";
   private static final String DEFAULT_DRIVER = "org.openqa.selenium.firefox.FirefoxDriver";
   private static final String CHROME_DRIVER = "org.openqa.selenium.chrome.ChromeDriver";
   private static final Logger logger =
@@ -70,7 +71,7 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
         logger.info(message);
         assumeTrue(message, false);
       }
-      Parameters.setMaxAttempts(3);
+      setRetries();
     }
   }
 
@@ -119,6 +120,12 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
     } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
       logger.error("Could not instantiate WebDriver class {}", driverClass);
       throw new IllegalStateException("Could not instantiate WebDriver class " + driverClass, e);
+    }
+  }
+
+  private void setRetries() {
+    if (System.getProperty(RETRIES_SYSTEM_PROPERTY) != null) {
+      Parameters.setMaxAttempts(Integer.parseInt(System.getProperty(RETRIES_SYSTEM_PROPERTY)));
     }
   }
 
