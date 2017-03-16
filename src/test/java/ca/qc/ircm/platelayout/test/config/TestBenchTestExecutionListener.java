@@ -70,7 +70,7 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
         logger.info(message);
         assumeTrue(message, false);
       }
-      Parameters.setMaxAttempts(5);
+      Parameters.setMaxAttempts(3);
     }
   }
 
