@@ -184,38 +184,15 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
-            <excludes>
-              <exclude>ca/qc/ircm/platelayout/**/integration/**/*.java</exclude>
-              <exclude>ca/qc/ircm/platelayout/test/**/*.java</exclude>
-            </excludes>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <configuration>
             <systemPropertyVariables>
               <testbench.skip>${testbench.skip}</testbench.skip>
               <testbench.driver>${testbench.driver}</testbench.driver>
               <spring.devtools.restart.enabled>false</spring.devtools.restart.enabled>
             </systemPropertyVariables>
-            <includes>
-              <include>ca/qc/ircm/platelayout/**/integration/**/*.java</include>
-            </includes>
+            <excludes>
+              <exclude>ca/qc/ircm/platelayout/test/**/*.java</exclude>
+            </excludes>
           </configuration>
-          <executions>
-            <execution>
-              <id>integration-test</id>
-              <goals>
-                <goal>integration-test</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>verify</id>
-              <goals>
-                <goal>verify</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
