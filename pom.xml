@@ -152,15 +152,15 @@
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-compatibility-server</artifactId>
+      <artifactId>vaadin-server</artifactId>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-compatibility-client</artifactId>
+      <artifactId>vaadin-client</artifactId>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-compatibility-shared</artifactId>
+      <artifactId>vaadin-shared</artifactId>
     </dependency>
   </dependencies>
   <build>

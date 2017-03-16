@@ -31,8 +31,9 @@ import ca.qc.ircm.platelayout.client.PlateLayoutState.WellData;
 import ca.qc.ircm.platelayout.test.config.TestAnnotations;
 import com.vaadin.server.ServerRpcMethodInvocation;
 import com.vaadin.shared.MouseEventDetails;
+import com.vaadin.shared.Registration;
 import com.vaadin.ui.Component;
-import com.vaadin.v7.ui.Label;
+import com.vaadin.ui.Label;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -497,6 +498,19 @@ public class PlateLayoutTest {
 
   @Test
   public void removeColumnHeaderClickListener() {
+    Registration registration = plateLayout.addColumnHeaderClickListener(columnHeaderClickListener);
+
+    registration.remove();
+
+    List<?> listeners = new ArrayList<>(plateLayout.getListeners(ColumnHeaderClickEvent.class));
+    assertEquals(0, listeners.size());
+    plateLayout.clickColumnHeader(1);
+    verify(columnHeaderClickListener, never()).columnHeaderClick(any());
+  }
+
+  @Test
+  @Deprecated
+  public void removeColumnHeaderClickListener_Deprecated() {
     plateLayout.addColumnHeaderClickListener(columnHeaderClickListener);
 
     plateLayout.removeColumnHeaderClickListener(columnHeaderClickListener);
@@ -523,6 +537,19 @@ public class PlateLayoutTest {
 
   @Test
   public void removeRowHeaderClickListener() {
+    Registration registration = plateLayout.addRowHeaderClickListener(rowHeaderClickListener);
+
+    registration.remove();
+
+    List<?> listeners = new ArrayList<>(plateLayout.getListeners(RowHeaderClickEvent.class));
+    assertEquals(0, listeners.size());
+    plateLayout.clickRowHeader(1);
+    verify(rowHeaderClickListener, never()).rowHeaderClick(any());
+  }
+
+  @Test
+  @Deprecated
+  public void removeRowHeaderClickListener_Deprecated() {
     plateLayout.addRowHeaderClickListener(rowHeaderClickListener);
 
     plateLayout.removeRowHeaderClickListener(rowHeaderClickListener);
@@ -550,6 +577,19 @@ public class PlateLayoutTest {
 
   @Test
   public void removeWellClickListener() {
+    Registration registration = plateLayout.addWellClickListener(wellClickListener);
+
+    registration.remove();
+
+    List<?> listeners = new ArrayList<>(plateLayout.getListeners(RowHeaderClickEvent.class));
+    assertEquals(0, listeners.size());
+    plateLayout.clickWell(1, 2);
+    verify(wellClickListener, never()).wellClick(any());
+  }
+
+  @Test
+  @Deprecated
+  public void removeWellClickListener_Deprecated() {
     plateLayout.addWellClickListener(wellClickListener);
 
     plateLayout.removeWellClickListener(wellClickListener);
