@@ -19,9 +19,9 @@ package ca.qc.ircm.platelayout.test.config;
 
 import static org.junit.Assume.assumeTrue;
 
+import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.TestBenchTestCase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -44,17 +44,19 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
       new String[] { "vaadin.testbench.developer.license", ".vaadin.testbench.developer.license" };
   private static final String LICENSE_SYSTEM_PROPERTY = "vaadin.testbench.developer.license";
   private static final String SKIP_TESTS_ERROR_MESSAGE = "TestBench tests are skipped";
-  private static final String SKIP_TESTS_SYSTEM_PROPERTY = "testbench-tests.skip";
+  private static final String SKIP_TESTS_SYSTEM_PROPERTY = "testbench.skip";
+  private static final String DRIVER_SYSTEM_PROPERTY = "testbench.driver";
+  private static final String DEFAULT_DRIVER = "org.openqa.selenium.firefox.FirefoxDriver";
   private static final Logger logger =
       LoggerFactory.getLogger(TestBenchTestExecutionListener.class);
 
   @Override
   public void beforeTestClass(TestContext testContext) throws Exception {
-    if (isSkipTestBenchTests()) {
-      assumeTrue(SKIP_TESTS_ERROR_MESSAGE, false);
-    }
-
     if (isTestBenchTest(testContext)) {
+      if (isSkipTestBenchTests()) {
+        assumeTrue(SKIP_TESTS_ERROR_MESSAGE, false);
+      }
+
       boolean licenseFileExists = false;
       for (String licencePath : LICENSE_PATHS) {
         licenseFileExists |=
@@ -66,13 +68,14 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
         logger.info(message);
         assumeTrue(message, false);
       }
+      Parameters.setMaxAttempts(5);
     }
   }
 
   @Override
   public void beforeTestMethod(TestContext testContext) throws Exception {
     if (isTestBenchTest(testContext)) {
-      WebDriver driver = new FirefoxDriver();
+      WebDriver driver = driver();
       TestBenchTestCase target = getInstance(testContext);
       target.setDriver(driver);
     }
@@ -97,6 +100,19 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
 
   private TestBenchTestCase getInstance(TestContext testContext) {
     return (TestBenchTestCase) testContext.getTestInstance();
+  }
+
+  private WebDriver driver() {
+    String driverClass = System.getProperty(DRIVER_SYSTEM_PROPERTY);
+    if (driverClass == null) {
+      driverClass = DEFAULT_DRIVER;
+    }
+    try {
+      return (WebDriver) Class.forName(driverClass).newInstance();
+    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+      logger.error("Could not instantiate WebDriver class {}", driverClass);
+      throw new IllegalStateException("Could not instantiate WebDriver class " + driverClass, e);
+    }
   }
 
   @Override
