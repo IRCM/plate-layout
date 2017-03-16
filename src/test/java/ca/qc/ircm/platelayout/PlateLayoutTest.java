@@ -32,7 +32,7 @@ import ca.qc.ircm.platelayout.test.config.TestAnnotations;
 import com.vaadin.server.ServerRpcMethodInvocation;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Label;
+import com.vaadin.v7.ui.Label;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
