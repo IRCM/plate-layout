@@ -22,6 +22,7 @@ import ca.qc.ircm.platelayout.client.PlateLayoutState;
 import ca.qc.ircm.platelayout.client.PlateLayoutState.WellData;
 import com.vaadin.shared.Connector;
 import com.vaadin.shared.MouseEventDetails;
+import com.vaadin.shared.Registration;
 import com.vaadin.ui.Component;
 
 import java.util.ArrayList;
@@ -207,28 +208,31 @@ public class PlateLayout extends com.vaadin.ui.AbstractComponentContainer {
     fireEvent(new WellClickEvent(PlateLayout.this, column, row));
   }
 
-  public void addColumnHeaderClickListener(ColumnHeaderClickListener listener) {
-    addListener(ColumnHeaderClickEvent.class, listener,
+  public Registration addColumnHeaderClickListener(ColumnHeaderClickListener listener) {
+    return addListener(ColumnHeaderClickEvent.class, listener,
         ColumnHeaderClickListener.COLUMN_HEADER_CLICK_METHOD);
   }
 
+  @Deprecated
   public void removeColumnHeaderClickListener(ColumnHeaderClickListener listener) {
     removeListener(ColumnHeaderClickEvent.class, listener);
   }
 
-  public void addRowHeaderClickListener(RowHeaderClickListener listener) {
-    addListener(RowHeaderClickEvent.class, listener,
+  public Registration addRowHeaderClickListener(RowHeaderClickListener listener) {
+    return addListener(RowHeaderClickEvent.class, listener,
         RowHeaderClickListener.ROW_HEADER_CLICK_METHOD);
   }
 
+  @Deprecated
   public void removeRowHeaderClickListener(RowHeaderClickListener listener) {
     removeListener(RowHeaderClickEvent.class, listener);
   }
 
-  public void addWellClickListener(WellClickListener listener) {
-    addListener(WellClickEvent.class, listener, WellClickListener.WELL_CLICK_METHOD);
+  public Registration addWellClickListener(WellClickListener listener) {
+    return addListener(WellClickEvent.class, listener, WellClickListener.WELL_CLICK_METHOD);
   }
 
+  @Deprecated
   public void removeWellClickListener(WellClickListener listener) {
     removeListener(WellClickEvent.class, listener);
   }
