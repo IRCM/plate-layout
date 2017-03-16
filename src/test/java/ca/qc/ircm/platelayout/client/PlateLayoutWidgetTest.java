@@ -238,13 +238,14 @@ public class PlateLayoutWidgetTest extends PlateLayoutWidgetPageObject {
       }
     }
 
-    setStyle("");
+    setStyle("abc");
     clickStyle();
 
     for (int column = 1; column < getPlateLayoutColumns(); column++) {
       for (int row = 1; row < getPlateLayoutRows(); row++) {
         AbstractElement cell = plateLayoutCell(column, row);
         assertTrue(cell.getAttribute("class").contains(WELL_CLASSNAME));
+        assertTrue(cell.getAttribute("class").contains("abc"));
         assertFalse(cell.getAttribute("class").contains("test"));
       }
     }
