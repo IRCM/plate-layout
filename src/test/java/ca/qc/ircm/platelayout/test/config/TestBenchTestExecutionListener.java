@@ -21,6 +21,7 @@ import static org.junit.Assume.assumeTrue;
 
 import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.TestBenchTestCase;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,7 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
   private static final String SKIP_TESTS_SYSTEM_PROPERTY = "testbench.skip";
   private static final String DRIVER_SYSTEM_PROPERTY = "testbench.driver";
   private static final String DEFAULT_DRIVER = "org.openqa.selenium.firefox.FirefoxDriver";
+  private static final String CHROME_DRIVER = "org.openqa.selenium.chrome.ChromeDriver";
   private static final Logger logger =
       LoggerFactory.getLogger(TestBenchTestExecutionListener.class);
 
@@ -106,6 +108,11 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
     String driverClass = System.getProperty(DRIVER_SYSTEM_PROPERTY);
     if (driverClass == null) {
       driverClass = DEFAULT_DRIVER;
+      if (SystemUtils.IS_OS_MAC_OSX) {
+        // Defaults to Chrome on MacOS. See
+        // https://vaadin.com/docs/-/part/testbench/testbench-known-issues.html
+        driverClass = CHROME_DRIVER;
+      }
     }
     try {
       return (WebDriver) Class.forName(driverClass).newInstance();

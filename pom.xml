@@ -387,15 +387,20 @@
       </properties>
     </profile>
     <profile>
-      <id>firefox</id>
+      <id>chrome</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
       <properties>
-        <testbench.driver>org.openqa.selenium.firefox.FirefoxDriver</testbench.driver>
+        <testbench.driver>org.openqa.selenium.chrome.ChromeDriver</testbench.driver>
       </properties>
     </profile>
     <profile>
-      <id>chrome</id>
+      <id>firefox</id>
       <properties>
-        <testbench.driver>org.openqa.selenium.chrome.ChromeDriver</testbench.driver>
+        <testbench.driver>org.openqa.selenium.firefox.FirefoxDriver</testbench.driver>
       </properties>
     </profile>
   </profiles>
