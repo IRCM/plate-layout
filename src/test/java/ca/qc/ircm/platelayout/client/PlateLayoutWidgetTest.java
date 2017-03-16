@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.qc.ircm.platelayout.client.integration;
+package ca.qc.ircm.platelayout.client;
 
 import static ca.qc.ircm.platelayout.client.PlateLayoutWidget.CLASSNAME;
 import static ca.qc.ircm.platelayout.client.PlateLayoutWidget.COLUMN_HEADER_CLASSNAME;
