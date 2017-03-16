@@ -51,7 +51,7 @@
     <vaadin.version>8.0.2</vaadin.version>
     <spring-boot.version>1.4.3.RELEASE</spring-boot.version>
     <selenium.version>3.0.1</selenium.version>
-    <testbench-tests.skip>true</testbench-tests.skip>
+    <testbench.skip>true</testbench.skip>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
     <mojolicense-maven-plugin.version>1.10</mojolicense-maven-plugin.version>
     <Implementation-Title>${project.name}</Implementation-Title>
@@ -187,7 +187,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <configuration>
             <systemPropertyVariables>
-              <testbench-tests.skip>${testbench-tests.skip}</testbench-tests.skip>
+              <testbench.skip>${testbench.skip}</testbench.skip>
               <spring.devtools.restart.enabled>false</spring.devtools.restart.enabled>
             </systemPropertyVariables>
             <includes>
@@ -372,9 +372,9 @@
       </repositories>
     </profile>
     <profile>
-      <id>test-testbench</id>
+      <id>testbench</id>
       <properties>
-        <testbench-tests.skip>false</testbench-tests.skip>
+        <testbench.skip>false</testbench.skip>
       </properties>
     </profile>
   </profiles>
