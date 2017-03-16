@@ -251,6 +251,7 @@
             <style>OBF</style>
             <strict>true</strict>
             <logLevel>INFO</logLevel>
+            <extraJvmArgs>-Xmx1G</extraJvmArgs>
           </configuration>
           <executions>
             <execution>
