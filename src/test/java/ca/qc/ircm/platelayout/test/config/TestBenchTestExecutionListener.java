@@ -21,8 +21,6 @@ import static org.junit.Assume.assumeTrue;
 
 import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.TestBenchTestCase;
-import org.apache.commons.lang3.SystemUtils;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -46,10 +44,7 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
   private static final String LICENSE_SYSTEM_PROPERTY = "vaadin.testbench.developer.license";
   private static final String SKIP_TESTS_ERROR_MESSAGE = "TestBench tests are skipped";
   private static final String SKIP_TESTS_SYSTEM_PROPERTY = "testbench.skip";
-  private static final String DRIVER_SYSTEM_PROPERTY = "testbench.driver";
   private static final String RETRIES_SYSTEM_PROPERTY = "testbench.retries";
-  private static final String DEFAULT_DRIVER = "org.openqa.selenium.firefox.FirefoxDriver";
-  private static final String CHROME_DRIVER = "org.openqa.selenium.chrome.ChromeDriver";
   private static final Logger logger =
       LoggerFactory.getLogger(TestBenchTestExecutionListener.class);
 
@@ -75,52 +70,12 @@ public class TestBenchTestExecutionListener extends AbstractTestExecutionListene
     }
   }
 
-  @Override
-  public void beforeTestMethod(TestContext testContext) throws Exception {
-    if (isTestBenchTest(testContext)) {
-      WebDriver driver = driver();
-      TestBenchTestCase target = getInstance(testContext);
-      target.setDriver(driver);
-    }
-  }
-
-  @Override
-  public void afterTestMethod(TestContext testContext) throws Exception {
-    if (isTestBenchTest(testContext)) {
-      TestBenchTestCase target = getInstance(testContext);
-      target.getDriver().manage().deleteAllCookies();
-      target.getDriver().quit();
-    }
-  }
-
   private boolean isSkipTestBenchTests() {
     return Boolean.valueOf(System.getProperty(SKIP_TESTS_SYSTEM_PROPERTY));
   }
 
   private boolean isTestBenchTest(TestContext testContext) {
     return TestBenchTestCase.class.isAssignableFrom(testContext.getTestClass());
-  }
-
-  private TestBenchTestCase getInstance(TestContext testContext) {
-    return (TestBenchTestCase) testContext.getTestInstance();
-  }
-
-  private WebDriver driver() {
-    String driverClass = System.getProperty(DRIVER_SYSTEM_PROPERTY);
-    if (driverClass == null) {
-      driverClass = DEFAULT_DRIVER;
-      if (SystemUtils.IS_OS_MAC_OSX) {
-        // Defaults to Chrome on MacOS. See
-        // https://vaadin.com/docs/-/part/testbench/testbench-known-issues.html
-        driverClass = CHROME_DRIVER;
-      }
-    }
-    try {
-      return (WebDriver) Class.forName(driverClass).newInstance();
-    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-      logger.error("Could not instantiate WebDriver class {}", driverClass);
-      throw new IllegalStateException("Could not instantiate WebDriver class " + driverClass, e);
-    }
   }
 
   private void setRetries() {
