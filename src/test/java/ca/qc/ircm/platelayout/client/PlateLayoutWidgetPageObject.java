@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.qc.ircm.platelayout.client.integration;
+package ca.qc.ircm.platelayout.client;
 
 import static ca.qc.ircm.platelayout.test.config.TestPlateLayoutView.COLUMNS;
 import static ca.qc.ircm.platelayout.test.config.TestPlateLayoutView.RESIZE;

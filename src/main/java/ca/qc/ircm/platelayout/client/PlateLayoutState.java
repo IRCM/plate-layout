@@ -18,6 +18,7 @@
 package ca.qc.ircm.platelayout.client;
 
 import com.vaadin.shared.Connector;
+import com.vaadin.shared.ui.AbstractComponentContainerState;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ import java.util.Map;
 /**
  * Plate layout state.
  */
-public class PlateLayoutState extends com.vaadin.shared.AbstractComponentState {
+public class PlateLayoutState extends AbstractComponentContainerState {
   private static final long serialVersionUID = -1122609654126841136L;
   public int columns;
   public int rows;

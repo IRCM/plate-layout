@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.qc.ircm.platelayout.client.integration;
+package ca.qc.ircm.platelayout.client;
 
 import static ca.qc.ircm.platelayout.client.PlateLayoutWidget.CLASSNAME;
 import static ca.qc.ircm.platelayout.client.PlateLayoutWidget.COLUMN_HEADER_CLASSNAME;
@@ -238,13 +238,14 @@ public class PlateLayoutWidgetTest extends PlateLayoutWidgetPageObject {
       }
     }
 
-    setStyle("");
+    setStyle("abc");
     clickStyle();
 
     for (int column = 1; column < getPlateLayoutColumns(); column++) {
       for (int row = 1; row < getPlateLayoutRows(); row++) {
         AbstractElement cell = plateLayoutCell(column, row);
         assertTrue(cell.getAttribute("class").contains(WELL_CLASSNAME));
+        assertTrue(cell.getAttribute("class").contains("abc"));
         assertFalse(cell.getAttribute("class").contains("test"));
       }
     }
