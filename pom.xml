@@ -48,9 +48,9 @@
   </issueManagement>
   <properties>
     <javac.version>1.8</javac.version>
-    <vaadin.version>8.1.7</vaadin.version>
+    <vaadin.version>8.3.0</vaadin.version>
     <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
-    <selenium.version>3.0.1</selenium.version>
+    <selenium.version>3.4.0</selenium.version>
     <testbench.skip>true</testbench.skip>
     <testbench.driver>org.openqa.selenium.phantomjs.PhantomJSDriver</testbench.driver>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
