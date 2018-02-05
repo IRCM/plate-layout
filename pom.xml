@@ -54,7 +54,7 @@
     <testbench.skip>true</testbench.skip>
     <testbench.driver>org.openqa.selenium.phantomjs.PhantomJSDriver</testbench.driver>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-    <mojolicense-maven-plugin.version>1.10</mojolicense-maven-plugin.version>
+    <mojolicense-maven-plugin.version>1.14</mojolicense-maven-plugin.version>
     <Implementation-Title>${project.name}</Implementation-Title>
     <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
     <Vaadin-License-Title>GNU Affero General Public License</Vaadin-License-Title>
