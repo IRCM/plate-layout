@@ -1,21 +1,3 @@
-<!--
-
-    Copyright (c) 2016 Institut de recherches cliniques de Montreal (IRCM)
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses />.
-
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <groupId>ca.qc.ircm</groupId>
@@ -262,30 +244,6 @@
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>com.mycila</groupId>
-          <artifactId>license-maven-plugin</artifactId>
-          <configuration>
-            <headerDefinitions>
-              <headerDefinition>src/license/javacomment_style.xml</headerDefinition>
-            </headerDefinitions>
-            <mapping>
-              <java>JAVACOMMENT_STYLE</java>
-              <ini>SEMICOLON_STYLE</ini>
-              <scss>JAVADOC_STYLE</scss>
-            </mapping>
-            <excludes>
-              <exclude>**/README</exclude>
-              <exclude>**/.*</exclude>
-              <exclude>src/test/resources/VAADIN/themes/**/addons.scss</exclude>
-            </excludes>
-            <executions>
-              <execution>
-                <goals><goal>check</goal></goals>
-              </execution>
-            </executions>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <version>${mojolicense-maven-plugin.version}</version>
@@ -329,10 +287,6 @@
       <plugin>
         <groupId>com.vaadin</groupId>
         <artifactId>vaadin-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>com.mycila</groupId>
-        <artifactId>license-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
