@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>plate-layout</artifactId>
   <name>plate-layout</name>
-  <version>0.9</version>
+  <version>0.10-SNAPSHOT</version>
   <inceptionYear>2016</inceptionYear>
   <description>Layout for micro well plates used in laboratories</description>
   <url>https://github.com/IRCM/plate-layout</url>
