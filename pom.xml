@@ -10,7 +10,7 @@
   <version>0.8.1-SNAPSHOT</version>
   <inceptionYear>2016</inceptionYear>
   <description>Layout for micro well plates used in laboratories</description>
-  <url>http://bitbucket.org/ircm/plate-layout</url>
+  <url>https://github.com/IRCM/plate-layout</url>
   <licenses>
     <license>
       <name>GNU Affero General Public License</name>
@@ -19,13 +19,13 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:https://bitbucket.org/ircm/plate-layout.git</connection>
-    <developerConnection>scm:git:https://bitbucket.org/ircm/plate-layout.git</developerConnection>
-    <url>https://bitbucket.org/ircm/plate-layout</url>
+    <connection>scm:git:https://github.com/IRCM/plate-layout.git</connection>
+    <developerConnection>scm:git:https://github.com/IRCM/plate-layout.git</developerConnection>
+    <url>https://github.com/IRCM/plate-layout</url>
   </scm>
   <issueManagement>
-    <system>Bitbucket</system>
-    <url>https://bitbucket.org/ircm/plate-layout/issues</url>
+    <system>GitHub</system>
+    <url>https://github.com/IRCM/plate-layout/issues</url>
   </issueManagement>
   <properties>
     <javac.version>1.8</javac.version>
